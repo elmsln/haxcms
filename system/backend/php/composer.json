@@ -4,11 +4,11 @@
     "license": "Apache-2.0",
     "require": {
         "php": "^7.1",
-        "guzzlehttp/guzzle": "^6.3",
-        "twig/twig": "^2.0",
-        "icamys/php-sitemap-generator": "^1.0",
-        "symfony/filesystem": "^4.2",
-        "gumlet/php-image-resize": "^1.9",
+        "guzzlehttp/guzzle": "^7.0",
+        "twig/twig": "^3.0",
+        "icamys/php-sitemap-generator": "^4.0",
+        "symfony/filesystem": "^5.0",
+        "gumlet/php-image-resize": "^2.0",
         "zircote/swagger-php": "^3.0",
         "cweagans/composer-patches": "^1.6"
     },

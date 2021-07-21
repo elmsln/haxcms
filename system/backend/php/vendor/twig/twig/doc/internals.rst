@@ -1,7 +1,7 @@
 Twig Internals
 ==============
 
-Twig is very extensible and you can easily hack it. Keep in mind that you
+Twig is very extensible and you can hack it. Keep in mind that you
 should probably try to create an extension before hacking the core, as most
 features and enhancements can be handled with extensions. This chapter is also
 useful for people who want to understand how Twig works under the hood.
@@ -120,7 +120,7 @@ The generated template for a ``Hello {{ name }}`` template reads as follows
 using)::
 
     /* Hello {{ name }} */
-    class __TwigTemplate_1121b6f109fe93ebe8c6e22e3712bceb extends \Twig\Template
+    class __TwigTemplate_1121b6f109fe93ebe8c6e22e3712bceb extends Template
     {
         protected function doDisplay(array $context, array $blocks = [])
         {

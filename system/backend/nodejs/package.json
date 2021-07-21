@@ -16,11 +16,11 @@
     "helmet": "4.6.0",
     "express-fileupload": "1.2.1",
     "express": "4.17.1",
-    "open": "8.0.9",
+    "open": "8.2.1",
     "openapi-enforcer-middleware": "1.2.4",
-    "openapi-enforcer": "1.14.1",
+    "openapi-enforcer": "1.15.3",
     "body-parser": "1.19.0",
-    "sharp": "0.28.2",
+    "sharp": "0.28.3",
     "uuid": "8.3.2",
     "twig": "1.15.4",
     "crypto": "1.0.1",
@@ -31,6 +31,6 @@
     "cookie-parser": "1.4.5"
   },
   "devDependencies": {
-    "nodemon": "2.0.7"
+    "nodemon": "2.0.12"
   }
 }

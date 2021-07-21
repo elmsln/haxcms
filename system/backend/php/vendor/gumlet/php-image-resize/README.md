@@ -3,9 +3,9 @@ php-image-resize
 
 PHP library to resize, scale and crop images.
 
-[![Build Status](https://travis-ci.org/gumlet/php-image-resize.svg?branch=master)](https://travis-ci.org/gumlet/php-image-resize) [![Latest Stable Version](https://poser.pugx.org/gumlet/php-image-resize/v/stable)](https://packagist.org/packages/gumlet/php-image-resize) [![Monthly Downloads](https://poser.pugx.org/gumlet/php-image-resize/d/monthly)](https://packagist.org/packages/gumlet/php-image-resize)
+![Build Status](https://github.com/gumlet/php-image-resize/workflows/PHP%20CI/badge.svg) [![Latest Stable Version](https://poser.pugx.org/gumlet/php-image-resize/v/stable)](https://packagist.org/packages/gumlet/php-image-resize) [![Monthly Downloads](https://poser.pugx.org/gumlet/php-image-resize/d/monthly)](https://packagist.org/packages/gumlet/php-image-resize) [![Coverage Status](https://coveralls.io/repos/github/gumlet/php-image-resize/badge.svg?branch=master)](https://coveralls.io/github/gumlet/php-image-resize?branch=master)
 
-Hosted Solution
+Cloud Solution
 ---------------
 
 If you don't want to crop, resize and store images on your server, <a href="https://www.gumlet.com" target="_blank">Gumlet.com</a> is a **free** service which can process images in real-time and serve worldwide through CDN.
@@ -28,6 +28,8 @@ If using [Composer](https://getcomposer.org/), in your `composer.json` file add:
 ```
 
 If you are still using PHP 5.3, please install version ```1.7.0``` and if you are using PHP 5.4, please install version ```1.8.0``` of this library.
+
+WebP support is added with PHP `5.6.0` and current version of library supports that. If you are facing issues, please use `1.9.2` version of this library.
 
 Otherwise:
 
