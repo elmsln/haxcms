@@ -29,9 +29,9 @@ use Twig\Error\RuntimeError;
  */
 abstract class Template
 {
-    const ANY_CALL = 'any';
-    const ARRAY_CALL = 'array';
-    const METHOD_CALL = 'method';
+    public const ANY_CALL = 'any';
+    public const ARRAY_CALL = 'array';
+    public const METHOD_CALL = 'method';
 
     protected $parent;
     protected $parents = [];
@@ -45,14 +45,6 @@ abstract class Template
     {
         $this->env = $env;
         $this->extensions = $env->getExtensions();
-    }
-
-    /**
-     * @internal this method will be removed in 3.0 and is only used internally to provide an upgrade path from 1.x to 2.0
-     */
-    public function __toString()
-    {
-        return $this->getTemplateName();
     }
 
     /**
@@ -74,18 +66,13 @@ abstract class Template
      *
      * @return Source
      */
-    public function getSourceContext()
-    {
-        return new Source('', $this->getTemplateName());
-    }
+    abstract public function getSourceContext();
 
     /**
      * Returns the parent template.
      *
      * This method is for internal use only and should never be called
      * directly.
-     *
-     * @param array $context
      *
      * @return Template|TemplateWrapper|false The parent template or false if there is no parent
      */
@@ -223,7 +210,11 @@ abstract class Template
      */
     public function renderParentBlock($name, array $context, array $blocks = [])
     {
-        ob_start(function () { return ''; });
+        if ($this->env->isDebug()) {
+            ob_start();
+        } else {
+            ob_start(function () { return ''; });
+        }
         $this->displayParentBlock($name, $context, $blocks);
 
         return ob_get_clean();
@@ -244,7 +235,11 @@ abstract class Template
      */
     public function renderBlock($name, array $context, array $blocks = [], $useBlocks = true)
     {
-        ob_start(function () { return ''; });
+        if ($this->env->isDebug()) {
+            ob_start();
+        } else {
+            ob_start(function () { return ''; });
+        }
         $this->displayBlock($name, $context, $blocks, $useBlocks);
 
         return ob_get_clean();
@@ -316,15 +311,15 @@ abstract class Template
             }
 
             if ($template === $this->getTemplateName()) {
-                $class = \get_class($this);
+                $class = static::class;
                 if (false !== $pos = strrpos($class, '___', -1)) {
                     $class = substr($class, 0, $pos);
                 }
-
-                return $this->env->loadClass($class, $template, $index);
+            } else {
+                $class = $this->env->getTemplateClass($template);
             }
 
-            return $this->env->loadTemplate($template, $index);
+            return $this->env->loadTemplate($class, $template, $index);
         } catch (Error $e) {
             if (!$e->getSourceContext()) {
                 $e->setSourceContext($templateName ? new Source('', $templateName) : $this->getSourceContext());
@@ -349,7 +344,7 @@ abstract class Template
      *
      * @return Template
      */
-    protected function unwrap()
+    public function unwrap()
     {
         return $this;
     }
@@ -375,7 +370,11 @@ abstract class Template
     public function render(array $context)
     {
         $level = ob_get_level();
-        ob_start(function () { return ''; });
+        if ($this->env->isDebug()) {
+            ob_start();
+        } else {
+            ob_start(function () { return ''; });
+        }
         try {
             $this->display($context);
         } catch (\Throwable $e) {
@@ -421,5 +420,3 @@ abstract class Template
      */
     abstract protected function doDisplay(array $context, array $blocks = []);
 }
-
-class_alias('Twig\Template', 'Twig_Template');

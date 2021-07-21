@@ -14,7 +14,7 @@ use Twig\TwigFunction;
 
 final class DebugExtension extends AbstractExtension
 {
-    public function getFunctions()
+    public function getFunctions(): array
     {
         // dump is safe if var_dump is overridden by xdebug
         $isDumpOutputHtmlSafe = \extension_loaded('xdebug')
@@ -31,8 +31,6 @@ final class DebugExtension extends AbstractExtension
         ];
     }
 }
-
-class_alias('Twig\Extension\DebugExtension', 'Twig_Extension_Debug');
 }
 
 namespace {
@@ -46,7 +44,7 @@ function twig_var_dump(Environment $env, $context, ...$vars)
         return;
     }
 
-    ob_start(function () { return ''; });
+    ob_start();
 
     if (!$vars) {
         $vars = [];
